@@ -2,7 +2,6 @@ import pygame
 from pygame.locals import *
 
 pygame.init()
-
 WIDTH=950
 HEIGHT=700
 screen=pygame.display.set_mode((WIDTH,HEIGHT))
@@ -41,6 +40,19 @@ class Player():
         dy += self.vel_y
 
 		#check for collision
+        for tile in world.tile_list:
+            if tile[1].colliderect(self.rect.x + dx, self.rect.y, self.width, self.height):
+                dx = 0
+			#check for collision in y direction
+			if tile[1].colliderect(self.rect.x, self.rect.y + dy, self.width, self.height):
+				#check if below the ground i.e. jumping
+				if self.vel_y < 0:
+					dy = tile[1].bottom - self.rect.top
+					self.vel_y = 0
+				#check if above the ground i.e. falling
+				elif self.vel_y >= 0:
+					dy = tile[1].top - self.rect.bottom
+					self.vel_y = 0
 
 		#update player coordinates
         self.rect.x += dx
