@@ -94,6 +94,7 @@ PINK = (235, 65, 54)
 
 #define font
 font = pygame.font.SysFont('Futura', 30)
+font2 = pygame.font.Font('fonts/karma future.ttf', 80)
 
 def draw_text(text, font, text_col, x, y):
 	img = font.render(text, True, text_col)
@@ -636,12 +637,12 @@ class ScreenFade():
 
 #create screen fades
 intro_fade = ScreenFade(1, BLACK, 4)
-death_fade = ScreenFade(2, PINK, 4)
+death_fade = ScreenFade(2, PINK, 7)
 
 
 #create buttons
-start_button = button.Button(SCREEN_WIDTH // 2 - 130, SCREEN_HEIGHT // 2 - 150, start_img, 1)
-exit_button = button.Button(SCREEN_WIDTH // 2 - 110, SCREEN_HEIGHT // 2 + 50, exit_img, 1)
+start_button = button.Button(SCREEN_WIDTH // 2 - 130, SCREEN_HEIGHT // 2 - 100, start_img, 1)
+exit_button = button.Button(SCREEN_WIDTH // 2 - 110, SCREEN_HEIGHT // 2 + 90, exit_img, 1)
 restart_button = button.Button(SCREEN_WIDTH // 2 - 100, SCREEN_HEIGHT // 2 - 50, restart_img, 2)
 
 #create sprite groups
@@ -680,6 +681,9 @@ while run:
 	if start_game == False:
 		#draw menu
 		screen.fill(BG)
+		virus_image = pygame.transform.scale(virus_img, (80, 80))
+		draw_text("COVID SHOOTER",font2,WHITE,SCREEN_WIDTH // 2 - 350, SCREEN_HEIGHT // 2 - 270)
+		screen.blit(virus_image,(SCREEN_WIDTH // 2 + 250, SCREEN_HEIGHT // 2 - 240))
 		#add buttons
 		if start_button.draw(screen):
 			start_game = True
