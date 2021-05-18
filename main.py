@@ -274,7 +274,7 @@ class Soldier(pygame.sprite.Sprite):
 
 	def shoot(self,x):
 		if self.shoot_cooldown == 0 and self.ammo > 0:
-			self.shoot_cooldown = 20
+			self.shoot_cooldown = 10
 			bullet = Bullet(self.rect.centerx + (0.75 * self.rect.size[0] * self.direction), self.rect.centery, self.direction,x)
 			bullet_group.add(bullet)
 			#reduce ammo
@@ -682,8 +682,9 @@ while run:
 		#draw menu
 		screen.fill(BG)
 		virus_image = pygame.transform.scale(virus_img, (80, 80))
-		draw_text("COVID SHOOTER",font2,WHITE,SCREEN_WIDTH // 2 - 350, SCREEN_HEIGHT // 2 - 270)
-		screen.blit(virus_image,(SCREEN_WIDTH // 2 + 250, SCREEN_HEIGHT // 2 - 240))
+		draw_text("COVID SHOOTER",font2,WHITE,SCREEN_WIDTH // 2 - 275, SCREEN_HEIGHT // 2 - 270)
+		screen.blit(virus_image,(SCREEN_WIDTH // 2 + 275, SCREEN_HEIGHT // 2 - 240))
+		screen.blit(virus_image,(SCREEN_WIDTH//2 - 355,SCREEN_HEIGHT//2 - 240))
 		#add buttons
 		if start_button.draw(screen):
 			start_game = True
